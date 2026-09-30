@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheptarit Vocational Training Center</title>
+<style>
+  :root{
+    --green:#0b6e4f; --green-dark:#084c37; --gold:#f4a261;
+    --bg:#f4f7f6; --card:#ffffff; --text:#1f2d2b; --muted:#5b6b68;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  a{text-decoration:none;color:inherit}
+
+  /* Top bar */
+  .topbar{background:var(--green-dark);color:#fff;padding:.6rem 1.2rem;display:flex;justify-content:space-between;flex-wrap:wrap;font-size:.85rem}
+  .topbar a{color:#cdeee3;margin-left:1rem}
+  .topbar a:hover{color:var(--gold)}
+
+  /* Header */
+  header{background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;padding:1.4rem 1.2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+  .logo{width:54px;height:54px;border-radius:50%;background:var(--gold);color:var(--green-dark);display:grid;place-items:center;font-weight:800;font-size:1.4rem}
+  header h1{font-size:1.35rem}
+  header p{font-size:.85rem;opacity:.9}
+
+  /* Layout */
+  .layout{display:flex;min-height:70vh}
+  .sidebar{width:240px;background:var(--card);border-right:1px solid #e3e8e6;padding:1rem 0;position:sticky;top:0;height:100vh;overflow-y:auto}
+  .sidebar h3{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:0 1.2rem .5rem}
+  .nav-item{display:block;padding:.7rem 1.2rem;cursor:pointer;border-left:3px solid transparent;transition:.15s}
+  .nav-item:hover{background:#eef5f2}
+  .nav-item.active{background:#e6f2ed;border-left-color:var(--green);color:var(--green-dark);font-weight:600}
+  .main{flex:1;padding:1.6rem 2rem;max-width:900px}
+
+  /* Sections */
+  .section{display:none;animation:fade .3s ease}
+  .section.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .section h2{color:var(--green-dark);margin-bottom:.4rem;font-size:1.5rem}
+  .section .lead{color:var(--muted);margin-bottom:1.2rem}
+
+  /* Cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
+  .card{background:var(--card);border:1px solid #e3e8e6;border-radius:12px;padding:1rem;transition:.15s}
+  .card:hover{border-color:var(--green);box-shadow:0 6px 18px rgba(11,110,79,.12);transform:translateY(-2px)}
+  .card .tag{display:inline-block;background:#e6f2ed;color:var(--green-dark);font-size:.7rem;padding:.2rem .5rem;border-radius:20px;margin-bottom:.5rem}
+  .card h4{font-size:1rem;margin-bottom:.3rem}
+  .card p{font-size:.82rem;color:var(--muted)}
+  .card .cap{font-size:.75rem;color:var(--gold);font-weight:600;margin-top:.5rem}
+
+  /* Contact */
+  .contact-list{list-style:none}
+  .contact-list li{padding:.6rem 0;border-bottom:1px solid #eef2f1;display:flex;gap:.6rem}
+  .contact-list b{min-width:90px;color:var(--green-dark)}
+
+  /* Footer */
+  footer{background:var(--green-dark);color:#cdeee3;text-align:center;padding:1.2rem;font-size:.8rem}
+
+  /* Mobile */
+  @media(max-width:760px){
+    .sidebar{position:fixed;left:-260px;z-index:50;transition:.25s;box-shadow:4px 0 20px rgba(0,0,0,.2)}
+    .sidebar.open{left:0}
+    .main{padding:1.2rem}
+    .burger{display:block!important}
+  }
+  .burger{display:none;background:none;border:none;color:#fff;font-size:1.6rem;cursor:pointer}
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:40}
+  .overlay.show{display:block}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span>TVETA Registered · Public Vocational Training Center</span>
+  <span>
+    <a href="tel:+254718008580">Call: 0718 008 580</a>
+    <a href="mailto:cheptaritpoly65@yahoo.com">Email</a>
+  </span>
+</div>
+
+<header>
+  <button class="burger" onclick="toggleSidebar()">☰</button>
+  <div class="logo">CV</div>
+  <div>
+    <h1>Cheptarit Vocational Training Center</h1>
+    <p>Skills for life · Along Eldoret–Kapsabet Road, Mosoriot, Nandi County</p>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <h3>Navigate</h3>
+    <div class="nav-item active" onclick="show('home',this)">Home</div>
+    <div class="nav-item" onclick="show('about',this)">About</div>
+    <div class="nav-item" onclick="show('courses',this)">Courses</div>
+    <div class="nav-item" onclick="show('admissions',this)">Admissions</div>
+    <div class="nav-item" onclick="show('facilities',this)">Facilities</div>
+    <div class="nav-item" onclick="show('contact',this)">Contact</div>
+  </aside>
+
+  <main class="main">
+
+    <!-- HOME -->
+    <section class="section active" id="home">
+      <h2>Welcome</h2>
+      <p class="lead">Cheptarit Vocational Training Center is a TVETA-registered public institution offering artisan and trade-test courses that turn hands-on skills into real careers.</p>
+      <div class="grid">
+        <div class="card"><span class="tag">Practical</span><h4>Hands-on Workshops</h4><p>Learn by doing in fully equipped workshops across trades.</p></div>
+        <div class="card"><span class="tag">Certified</span><h4>NITA &amp; KNEC</h4><p>Trade tests and certificates recognized nationwide.</p></div>
+        <div class="card"><span class="tag">Affordable</span><h4>Accessible Fees</h4><p>Vocational training built for the community.</p></div>
+        <div class="card"><span class="tag">Boarding</span><h4>On-site Facilities</h4><p>Boarding available for trainees from far.</p></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <h2>About Us</h2>
+      <p class="lead">Registered by TVETA on 19 September 2016 under license TVETA/PUBLIC/VTC/0157/2016.</p>
+      <p>Located along the Eldoret–Kapsabet Road next to the DO's office in Mosoriot, Nandi County, the center serves trainees from Nandi, Uasin Gishu and beyond. We focus on artisan-level and government trade-test programs that match local industry needs — construction, automotive, electrical, beauty, and hospitality.</p>
+    </section>
+
+    <!-- COURSES -->
+    <section class="section" id="courses">
+      <h2>Courses Offered</h2>
+      <p class="lead">Artisan certificates and NITA trade tests. Click a course for details.</p>
+      <div class="grid" id="courseGrid"></div>
+    </section>
+
+    <!-- ADMISSIONS -->
+    <section class="section" id="admissions">
+      <h2>Admissions</h2>
+      <p class="lead">Intakes are ongoing. Visit the college or call to register.</p>
+      <ul class="contact-list">
+        <li><b>How to apply</b> Walk in during office hours or call to book a slot.</li>
+        <li><b>Requirements</b> KCPE/KCSE certificate, ID
+              <!-- Admissions -->
+    <section id="admissions" class="section">
+      <h2>Admissions</h2>
+      <p>Intakes are ongoing. Apply directly at the college or call the admissions office for the current term's requirements and fees.</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>How to Apply</h3>
+          <ol>
+            <li>Visit the college in person along Eldoret–Kapsabet Road, Mosoriot.</li>
+            <li>Pick an application form from the admissions office.</li>
+            <li>Attach your KCPE or KCSE certificate and a copy of your ID.</li>
+            <li>Submit the form and pay the registration fee.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Entry Requirements</h3>
+          <ul>
+            <li>Minimum KCPE for Artisan courses</li>
+            <li>Minimum KCSE D- (minus) for Trade Test</li>
+            <li>Age 16 years and above</li>
+            <li>Two passport-size photos</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Boarding</h3>
+          <p>Boarding facilities are available for trainees. Meals and accommodation are provided on campus.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <h2>Contact Us</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Reach Out</h3>
+          <p><strong>Phone:</strong> 0718 008 580</p>
+          <p><strong>Email:</strong> cheptaritpoly65@yahoo.com</p>
+          <p><strong>Postal:</strong> P.O. Box 45–30304, Mosoriot</p>
+        </div>
+        <div class="card">
+          <h3>Visit Us</h3>
+          <p>Cheptarit Vocational Training Center<br>
+          Eldoret–Kapsabet Road, Next to DO's Office<br>
+          Mosoriot, Nandi County, Kenya</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+      <h2>About the College</h2>
+      <p>Cheptarit Vocational Training Center is a TVETA-registered public vocational training institution in Nandi County. Registered on 19 September 2016 under license number TVETA/PUBLIC/VTC/0157/2016, it offers artisan and government trade test courses designed to equip trainees with practical, marketable skills.</p>
+      <div class="stats">
+        <div class="stat"><span>10+</span><small>Courses</small></div>
+        <div class="stat"><span>2016</span><small>Established</small></div>
+        <div class="stat"><span>NITA</span><small>Certified</small></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  const navItems = document.querySelectorAll('.nav-item');
+  const sections = document.querySelectorAll('.section');
+
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const target = item.dataset.section;
+      navItems.forEach(n => n.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+      item.classList.add('active');
+      document.getElementById(target).classList.add('active');
+      if (window.innerWidth < 768) toggleSidebar();
+    });
+  });
+
+  function toggleSidebar() {
+    document.querySelector('.sidebar').classList.toggle('open');
+  }
+
+  // Show home by default
+  document.querySelector('.nav-item ').click();
+</script>
+</body>
+  </html>
